@@ -47,12 +47,11 @@ const optArticleSelector = '.post',
   optTitleListSelector = '.titles';
 
 function generateTitleLinks (){
-
+  //Clear Message
   const clearMessage = document.querySelector(optTitleListSelector);
   clearMessage.innerHTML = '';
-
+  //Loop
   const articles = document.querySelectorAll(optArticleSelector);
-
   let html = '';
 
   for(let article of articles){
@@ -67,7 +66,7 @@ function generateTitleLinks (){
   console.log(html);
   }
   clearMessage.innerHTML = html;
-
+// Restore click links
   const links = document.querySelectorAll('.titles a');
   for(let link of links){
     link.addEventListener('click', titleClickHandler);
