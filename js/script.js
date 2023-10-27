@@ -56,5 +56,18 @@ function generateTitleLinks (){
   console.log(clearMessage);
 
 
+  const articles = document.querySelectorAll(optArticleSelector);
+
+  for(let article of articles){
+  const articleId = article.getAttribute('id');
+
+  const articleTitle = article.querySelector(optTitleSelector).innerHTML;
+
+  const linkHTML = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
+  console.log(linkHTML);
+  }
+
+
+
 }
 generateTitleLinks();
