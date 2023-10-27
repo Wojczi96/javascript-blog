@@ -45,3 +45,16 @@ function titleClickHandler(event){
   for(let link of links){
     link.addEventListener('click', titleClickHandler);
   }
+
+// Generowanie tytułów
+const optArticleSelector = '.post',
+  optTitleSelector = '.post-title',
+  optTitleListSelector = '.titles';
+
+function generateTitleLinks (){
+  const clearMessage = document.querySelector(optTitleListSelector).innerHTML = '';
+  console.log(clearMessage);
+
+
+}
+generateTitleLinks();
