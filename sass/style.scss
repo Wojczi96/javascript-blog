@@ -16,13 +16,30 @@ $font-text: 'Source Sans Pro', sans-serif;
 }
 
 body {
-  background: $color-light;
+  padding: 0;
+  margin: 0;
+  position: relative;
   font-family: $font-text;
   color: $color-dark;
   font-weight: 300;
   font-size: 16px;
   line-height: 1.7;
 }
+
+.bcg-photo-wrapper{
+  height: 150vh;
+  width: 100vw;
+  position: absolute;
+  top: -70px;
+  left: 0;
+  z-index: -1;
+  overflow: hidden;
+}
+.bcg-photo-wrapper img {
+  height: 100%;
+  width: 100%;
+}
+
 
 .container {
   max-width: 1140px;
@@ -57,7 +74,7 @@ body {
 }
 
 .sidebar, .posts {
-  background: $color-light;
+  background: white;
   margin-right: 10px;
   padding: 40px;
   border: 1px solid $color-dark;
@@ -67,6 +84,7 @@ body {
 /* Logo */
 
 .logo {
+  color: white;
   font-family: $font-logo;
   font-weight: 400;
   font-size: 104px;
@@ -83,6 +101,9 @@ body {
   .active {
     font-weight: bold;
   }
+}
+.list a:hover {
+  color: #186508;
 }
 
 .list-horizontal {
@@ -116,5 +137,44 @@ body {
   display: flex;
   p {
     margin: 0 10px 0 0;
+  }
+}
+/* Animation Section */
+.circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: yellow;
+  position: relative;
+  animation-name: example;
+  animation-duration: 6s;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+  opacity: 0.5;
+}
+@keyframes example {
+  0% {background-color: black; left: 0px; top: 0px;}
+  25% {background-color: red; left: 200px; top:0px;}
+  50% {background-color: blue; left: 200px; top: 400px;}
+  75% {background-color: green; left: 0px; top: 400px;}
+  100% {background-color: yellow; left: 0px; top: 0px;}
+}
+.waivy {
+  color: white;
+}
+.post {
+  animation: fadeInAnimation ease 3s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+@keyframes fadeInAnimation {
+  0% {
+      opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+      opacity: 2;
   }
 }
