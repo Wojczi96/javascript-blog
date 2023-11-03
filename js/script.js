@@ -45,29 +45,28 @@ activeLink.classList.remove('active');
 // Generate titles
 const optArticleSelector = '.post',
   optTitleSelector = '.post-title',
-  optTitleListSelector = '.titles';
+  optTitleListSelector = '.titles',
+  optArticleTagsSelector = '.post-tags .list';
 
 function generateTitleLinks (){
-  //Clear Message
+  console.log('1');
+
   const clearMessage = document.querySelector(optTitleListSelector);
   clearMessage.innerHTML = '';
-  //Loop
+
   const articles = document.querySelectorAll(optArticleSelector);
   let html = '';
 
   for(let article of articles){
-const articleId = article.getAttribute('id');
+    const articleId = article.getAttribute('id');
+    const articleTitle = article.querySelector(optTitleSelector).innerHTML;
+    const linkHTML = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
+    html = html + linkHTML;
+    console.log('2');
+  }
 
-const articleTitle = article.querySelector(optTitleSelector).innerHTML;
+  clearMessage.innerHTML = html;
 
-const linkHTML = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
-// console.log(linkHTML);
-
-html = html + linkHTML;
-// console.log(html);
-}
-clearMessage.innerHTML = html;
-// Restore click links
 const links = document.querySelectorAll('.titles a');
 for(let link of links){
   link.addEventListener('click', titleClickHandler);
@@ -75,3 +74,18 @@ for(let link of links){
 }
 generateTitleLinks();
 
+function generateTags (){
+  const articleTwo = document.querySelectorAll(optArticleSelector);
+  for(let secondArticle of articleTwo){
+    const titleGen = secondArticle.querySelector(optArticleTagsSelector);
+    let html = '';
+    const articleTags = secondArticle.getAttribute('data-tags');
+    const articleTagsArray = articleTags.split(' ');
+    for(let tag of articleTagsArray){
+      console.log(tag);
+    }
+
+  }
+}
+
+generateTags();
