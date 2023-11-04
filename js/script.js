@@ -40,7 +40,8 @@ activeLink.classList.remove('active');
 const optArticleSelector = '.post',
   optTitleSelector = '.post-title',
   optTitleListSelector = '.titles',
-  optArticleTagsSelector = '.post-tags .list';
+  optArticleTagsSelector = '.post-tags .list',
+  optAuthorSelector = '.post-author';
 
 function generateTitleLinks (){
 
@@ -109,3 +110,29 @@ function addClickListenersToTags(){
   }
 }
 addClickListenersToTags();
+
+
+function generateAuthors(){
+  const genAuthors = document.querySelectorAll(optArticleSelector);
+  for(let genAuthor of genAuthors){
+    const author = genAuthor.querySelector(optAuthorSelector);
+    author.innerHTML = '';
+    let html = '';
+    const authorsName = genAuthor.getAttribute('data-author');
+    for(let authorName of authorsName){
+      const linkHTMLThree = '<a href="#author-' + authorName + '"><span>' + authorName + '</span></a>';
+      html = html + linkHTMLThree;
+    }
+    author.innerHTML = html;
+  }
+}
+generateAuthors();
+
+function clickListerersToAuthors(){
+
+}
+
+function authorClickHanlder(){
+
+}
+
