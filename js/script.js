@@ -1,5 +1,15 @@
 'use strict';
 
+// const { list } = require("postcss");
+
+// Generate titles
+const optArticleSelector = '.post',
+  optTitleSelector = '.post-title',
+  optTitleListSelector = '.titles',
+  optArticleTagsSelector = '.post-tags .list',
+  optAuthorSelector = '.post-author',
+  optTagsListSelector = '.tags.list ';
+
 
 function titleClickHandler(event){
   event.preventDefault();
@@ -35,14 +45,6 @@ activeLink.classList.remove('active');
 
 }
 
-
-// Generate titles
-const optArticleSelector = '.post',
-  optTitleSelector = '.post-title',
-  optTitleListSelector = '.titles',
-  optArticleTagsSelector = '.post-tags .list',
-  optAuthorSelector = '.post-author';
-
 function generateTitleLinks (){
 
   const clearMessage = document.querySelector(optTitleListSelector);
@@ -68,6 +70,8 @@ for(let link of links){
 generateTitleLinks();
 
 function generateTags (){
+  let allTags = {};
+
   const articleTwo = document.querySelectorAll(optArticleSelector);
   for(let secondArticle of articleTwo){
     const titleGen = secondArticle.querySelector(optArticleTagsSelector);
@@ -78,9 +82,24 @@ function generateTags (){
     for(let tag of articleTagsArray){
       const linkHTMLTwo = '<li><a href="#tag-' + tag + '"><span>' + tag + '</span></a></li>';
       html = html + linkHTMLTwo;
+      // if(allTags.indexOf(linkHTMLTwo) == -1){
+      //   allTags.push(linkHTMLTwo);
+      // }
+      if(!allTags.hasOwnProperty(tag)){
+        allTags[tag] = 1;
+      } else {
+        allTags[tag]++;
+      }
     }
     titleGen.innerHTML = html;
   }
+  const tagList = document.querySelector(optTagsListSelector);
+  // tagList.innerHTML = allTags.join(' ');
+  let allTagsHTML = '';
+  for(let tag in allTags){
+    allTagsHTML += '<li><a href="#tag-' + tag + '">' + tag + ' (' + allTags[tag] + ') ';
+  }
+  tagList.innerHTML = allTagsHTML;
 }
 generateTags();
 
