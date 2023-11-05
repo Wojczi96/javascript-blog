@@ -139,6 +139,24 @@ body {
     margin: 0 10px 0 0;
   }
 }
+
+/* Tags */
+.tag-size-1 {
+  font-size: 18px;
+  color: red;
+}
+.tag-size-3 {
+  font-size: 24px;
+  color: gold;
+}
+.tag-size-5 {
+  font-size: 28px;
+  color: green;
+}
+.tags li {
+  display: inline-block;
+}
+
 /* Animation Section */
 .waivy {
   color: white;

@@ -1,14 +1,14 @@
 'use strict';
 
-// const { list } = require("postcss");
-
 // Generate titles
 const optArticleSelector = '.post',
   optTitleSelector = '.post-title',
   optTitleListSelector = '.titles',
   optArticleTagsSelector = '.post-tags .list',
   optAuthorSelector = '.post-author',
-  optTagsListSelector = '.tags.list ';
+  optTagsListSelector = '.tags.list ',
+  optCloudClassCount = '5',
+  optCloudClassPrefix = 'tag-size-';
 
 
 function titleClickHandler(event){
@@ -69,6 +69,29 @@ for(let link of links){
 }
 generateTitleLinks();
 
+function calculateTagsParams(tags){
+  const params = {
+    max: 0,
+    min: 999999,
+  };
+
+  for(let tag in tags){
+    params.max = Math.max(tags[tag], params.max);
+    params.min = Math.min(tags[tag], params.min);
+  }
+  return params;
+}
+calculateTagsParams();
+
+function calculateTagClass(count, params){
+  const normalizedCount = count - params.min;
+  const normalizedMax = params.max - params.min;
+  const percentage = normalizedCount / normalizedMax;
+  const classNumber = Math.floor( percentage * (optCloudClassCount - 1) + 1 );
+  return optCloudClassPrefix + classNumber;
+}
+
+
 function generateTags (){
   let allTags = {};
 
@@ -95,9 +118,11 @@ function generateTags (){
   }
   const tagList = document.querySelector(optTagsListSelector);
   // tagList.innerHTML = allTags.join(' ');
+  const tagsParams = calculateTagsParams(allTags);
+  console.log('tagsParams:', tagsParams);
   let allTagsHTML = '';
   for(let tag in allTags){
-    allTagsHTML += '<li><a href="#tag-' + tag + '">' + tag + ' (' + allTags[tag] + ') ';
+    allTagsHTML += '<li><a class="'+ calculateTagClass(allTags[tag], tagsParams) +'" href="#tag-' + tag + '">' + tag + ' (' + allTags[tag] + ') ';
   }
   tagList.innerHTML = allTagsHTML;
 }
