@@ -82,7 +82,6 @@ function generateTags (){
     titleGen.innerHTML = html;
   }
 }
-
 generateTags();
 
 function tagClickHanlder(event){
@@ -119,20 +118,36 @@ function generateAuthors(){
     author.innerHTML = '';
     let html = '';
     const authorsName = genAuthor.getAttribute('data-author');
-    for(let authorName of authorsName){
-      const linkHTMLThree = '<a href="#author-' + authorName + '"><span>' + authorName + '</span></a>';
-      html = html + linkHTMLThree;
-    }
+    const linkHTMLThree = '<a href="#author-' + authorsName + '"><span>' + authorsName + '</span></a>';
+    html = html + linkHTMLThree;
     author.innerHTML = html;
   }
 }
 generateAuthors();
 
+function authorClickHanlder(event){
+  event.preventDefault();
+  const clickedElement = this;
+  const authorReader = clickedElement.getAttribute('href');
+  const authorSelector = authorReader.replace('#author-', ' ');
+  const activeAuthorTags = document.querySelectorAll('a.active[href^="#author-"]');
+  for(let activeAuthorTag of activeAuthorTags){
+    activeAuthorTag.classList.remove('remove');
+  }
+  const finderAuthors = document.querySelectorAll('a[href="' + authorSelector + '"]');
+  for(let finderAuthor of finderAuthors){
+    finderAuthor.classList.add('active');
+  }
+  generateTitleLinks('[data-tags="'+ authorSelector + '"]');
+}
+
 function clickListerersToAuthors(){
-
+  const linksAuthors = document.querySelectorAll('a[href^="#author-"]');
+  for(let linksAuthor of linksAuthors){
+    linksAuthor.addEventListener('click', authorClickHanlder);
+  }
 }
+clickListerersToAuthors();
 
-function authorClickHanlder(){
 
-}
 
