@@ -127,6 +127,9 @@ body {
   &.active {
     display: block;
   }
+  p {
+    list-style-type: none;
+  }
 }
 
 .post-author {
@@ -158,6 +161,7 @@ body {
 }
 .tags li {
   display: inline-block;
+  padding-right: 5px;
 }
 
 /* Animation Section */
