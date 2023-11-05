@@ -84,6 +84,7 @@ function calculateTagsParams(tags){
 }
 calculateTagsParams();
 
+
 function calculateTagClass(count, params){
   const normalizedCount = count - params.min;
   const normalizedMax = params.max - params.min;
@@ -120,7 +121,6 @@ function generateTags (){
   const tagList = document.querySelector(optTagsListSelector);
   // tagList.innerHTML = allTags.join(' ');
   const tagsParams = calculateTagsParams(allTags);
-  console.log('tagsParams:', tagsParams);
   let allTagsHTML = '';
   for(let tag in allTags){
     allTagsHTML += '<li><a class="'+ calculateTagClass(allTags[tag], tagsParams) +'" href="#tag-' + tag + '">' + tag + ' (' + allTags[tag] + ')</a></li>';
